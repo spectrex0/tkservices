@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dev0_tokyo | Discord & Development Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #050505;
+            --card-bg: #0a0a0a;
+            --primary-blue: #004e92;
+            --accent-blue: #007bff;
+            --discord-blurple: #5865F2;
+            --text-main: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border-color: #1f1f1f;
+            --glow: 0 0 20px rgba(88, 101, 242, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: var(--discord-blurple); border-radius: 4px; }
+
+        /* Header */
+        header {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color); z-index: 1000;
+            padding: 1rem 5%;
+        }
+
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1200px; margin: 0 auto;
+        }
+
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
+        .logo span { color: var(--discord-blurple); }
+
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none;
+            margin-left: 2rem; font-size: 0.9rem; transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--discord-blurple); }
+
+        /* Hero Section - Discord Themed Gradient */
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1d3d 0%, var(--bg-color) 70%);
+            padding: 0 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem; font-weight: 800; margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--discord-blurple));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            color: var(--text-secondary); font-size: 1.2rem;
+            max-width: 600px; margin: 0 auto 2rem auto;
+        }
+
+        .btn {
+            display: inline-block; padding: 12px 30px;
+            background: var(--discord-blurple); color: white;
+            text-decoration: none; border-radius: 4px; font-weight: 600;
+            transition: 0.3s; border: 1px solid transparent; cursor: pointer;
+        }
+        .btn:hover {
+            background: transparent; border-color: var(--discord-blurple);
+            box-shadow: var(--glow);
+        }
+
+        /* Sections */
+        .section { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
+        
+        .section-title {
+            font-size: 2rem; margin-bottom: 3rem;
+            border-left: 4px solid var(--discord-blurple); padding-left: 1rem;
+        }
+
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            padding: 2rem; border-radius: 8px; transition: 0.3s;
+            position: relative; overflow: hidden;
+        }
+        .card:hover {
+            transform: translateY(-5px); border-color: var(--discord-blurple);
+            box-shadow: var(--glow);
+        }
+
+        .card-icon { font-size: 2rem; color: var(--discord-blurple); margin-bottom: 1.5rem; }
+        .card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        
+        .card ul { list-style: none; color: var(--text-secondary); }
+        .card ul li { margin-bottom: 0.5rem; display: flex; align-items: center; }
+        .card ul li::before {
+            content: "\f054"; font-family: "Font Awesome 6 Free"; font-weight: 900;
+            font-size: 0.7rem; color: var(--discord-blurple); margin-right: 10px;
+        }
+
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem; }
+        .tech-badge {
+            background: #111; border: 1px solid #333; padding: 5px 10px;
+            font-size: 0.8rem; border-radius: 4px; color: var(--text-secondary);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--card-bg); padding: 2rem; border-radius: 8px;
+            border: 1px solid var(--border-color); max-width: 600px; margin: 0 auto;
+        }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 12px; background: #050505;
+            border: 1px solid var(--border-color); color: white;
+            border-radius: 4px; outline: none; transition: 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--discord-blurple);
+        }
+
+        footer {
+            text-align: center; padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary); font-size: 0.9rem; margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">dev0_<span>tokyo</span></div>
+            <div class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#discord">Servicios Discord</a>
+                <a href="#advanced">Extra</a>
+                <a href="#web">Desarrollo Web</a>
+                <a href="#contacto">Contacto</a>
+                
+            </div>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Experto en Discord & Dev</h1>
+            <p>Especialista en gestión avanzada de comunidades, seguridad, bots personalizados y desarrollo fullstack.</p>
+            <a href="#discord" class="btn">Ver Servicios Discord</a>
+        </div>
+    </section>
+
+    <section id="discord" class="section">
+        <h2 class="section-title">Soluciones Discord</h2>
+        <div class="grid">
+            <div class="card">
+                <i class="fab fa-discord card-icon"></i>
+                <h3>Gestión de Cuentas</h3>
+                <ul>
+                    <li>Creación de cuentas</li>
+                    <li>Gestión de tokens</li>
+                    <li>Baneo de cuentas</li>
+                    <li>Limpieza de servidores</li>
+                </ul>
+            </div>
+            <div class="card">
+                <i class="fas fa-robot card-icon"></i>
+                <h3>Bots & Automatización</h3>
+                <ul>
+                    <li>Desarrollo en Discord.js v14+</li>
+                    <li>Sistemas de moderación 24/7</li>
+                    <li>Integración con APIs externas</li>
+                    <li>Comandos personalizados</li>
+                </ul>
+            </div>
+            <div class="card">
+                <i class="fas fa-shield-halved card-icon"></i>
+                <h3>Seguridad & Servidores</h3>
+                <ul>
+                    <li>Configuración completa (Setup)</li>
+                    <li>Protección Anti-Nuke/Raid/spam</li>
+                    <li>Sistemas de Whitelist</li>
+                    <li>Logs avanzados</li>
+                </ul>
+            </div>
+            <div class="card">
+                <i class="fas fa-link card-icon"></i>
+                <h3>Integraciones & Webhooks</h3>
+                <ul>
+                    <li>Conexión con páginas web</li>
+                    <li>Notificaciones automáticas</li>
+                    <li>Sistemas de tickets</li>
+                    <li>Alertas en tiempo real</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="web" class="section">
+        <h2 class="section-title">Desarrollo Web Fullstack</h2>
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-code card-icon"></i>
+                <h3>Frontend & Backend</h3>
+                <ul>
+                    <li>Sitios web modernos y rápidos</li>
+                    <li>Dashboards administrativos</li>
+                    <li>APIs RESTful seguras</li>
+                    <li>Diseño responsivo (Mobile-first)</li>
+                </ul>
+                <div class="tech-stack">
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">TypeScript</span>
+                    <span class="tech-badge">Node.js</span>
+                    <span class="tech-badge">MongoDB</span>
+                </div>
+            </div>
+            <div class="card">
+                <i class="fas fa-terminal card-icon"></i>
+                <h3>Herramientas & Scripts</h3>
+                <ul>
+                    <li>Extensiones de navegador</li>
+                    <li>Automatización de tareas</li>
+                    <li>Web Scraping</li>
+                    <li>Optimización de sistemas</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="advanced" class="section">
+        <h2 class="section-title">Seguridad & Análisis</h2>
+        <div class="grid">
+            <div class="card">
+                <i class="fas fa-microchip card-icon"></i>
+                <h3>Reverse Engineering</h3>
+                <ul>
+                    <li>Análisis estático y dinámico</li>
+                    <li>Depuración de software (Debugging)</li>
+                    <li>Modificación de lógica de juegos</li>
+                    <li>Ingeniería inversa de APIs</li>
+                </ul>
+                <div class="tech-stack">
+                    <span class="tech-badge" style="border-color: #ff9900; color: #ff9900;">En Progreso</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-user-secret card-icon"></i>
+                <h3>OSINT & Investigación</h3>
+                <ul>
+                    <li>Búsqueda de inteligencia en fuentes abiertas</li>
+                    <li>Análisis de metadatos</li>
+                    <li>Entre otras tecnicas...</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-file-code card-icon"></i>
+                <h3>Loggers & Monitoreo</h3>
+                <ul>
+                    <li>Sistemas de registro de eventos (Keylogging ético)</li>
+                    <li>Backdoors</li>
+                    <li>Captura de datos de sesión</li>
+                    <li>Auditoría de actividad de usuarios</li>
+                    <li>Almacenamiento seguro de logs</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <i class="fas fa-server card-icon"></i>
+                <h3>Soluciones IT</h3>
+                <ul>
+                    <li>Soporte técnico especializado</li>
+                    <li>Optimización de hardware/software</li>
+                    <li>Configuración de redes locales</li>
+                    <li>Mantenimiento preventivo de sistemas</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="section">
+        <h2 class="section-title">Solicitar Servicio</h2>
+        <div class="contact-form">
+            <form id="discordForm">
+                <div class="form-group">
+                    <label>Tu Usuario (Discord o Email)</label>
+                    <input type="text" id="username" required placeholder="Ej: dev0_tokyo#0000">
+                </div>
+                <div class="form-group">
+                    <label>Tipo de Servicio</label>
+                    <select id="serviceType">
+                        <option value="Discord - Bot">Discord - Bot</option>
+                        <option value="Discord - Seguridad/Gestion">Discord - Seguridad/Gestión</option>
+                        <option value="Discord - Cuentas/Baneos">Discord - Cuentas/Baneos</option>
+                        <option value="Web - Frontend/Backend">Web - Desarrollo</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Detalles del Proyecto</label>
+                    <textarea id="message" rows="5" required placeholder="Describe qué necesitas..."></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Enviar Solicitud</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 dev0_tokyo. Servicios Profesionales de Desarrollo.</p>
+    </footer>
+
+    <script>
+        document.getElementById('discordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = 'Enviando...';
+            btn.disabled = true;
+
+            const username = document.getElementById('username').value;
+            const service = document.getElementById('serviceType').value;
+            const message = document.getElementById('message').value;
+            
+// yes, u can send spam to this webhook if u want to, i dont care 
+// si, puedes enviar spam a este webhook si quieres, no me importa
+            const webhookURL = "https://discord.com/api/webhooks/1484917960358236292/CDQ1pCDiwbKx11E9ypht30fGnraEEKV5Fvm3VNcZpQU2dG0sniJeqDLpkabFUWLRgRvh";
+
+            const payload = {
+                content: `🔔 **Nueva Solicitud de Servicio**`,
+                embeds: [{
+                    title: "Detalles de la Solicitud",
+                    color: 5865F2,  
+                    fields: [
+                        { name: "👤 Cliente", value: username, inline: true },
+                        { name: "🛠️ Servicio", value: service, inline: true },
+                        { name: "📝 Descripción", value: message }
+                    ],
+                    footer: { text: "Enviado desde dev0_tokyo Portfolio" },
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            fetch(webhookURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Solicitud enviada correctamente.');
+                    e.target.reset();
+                } else {
+                    alert('Error al enviar la solicitud.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error de conexión.');
+            })
+            .finally(() => {
+                btn.innerText = originalText;
+                btn.disabled = false;
+            });
+        });
+    </script>
+</body>
+</html>
